@@ -7,6 +7,8 @@ namespace ChristmasPastryShop.Models.Delicacies
 {
     public abstract class Delicacy
     {
+        private string name;
+        private double price;
         public Delicacy(string delicacyName, double price)
         {
             Name = delicacyName;
@@ -15,14 +17,14 @@ namespace ChristmasPastryShop.Models.Delicacies
 
         public string Name 
         {  
-            get => Name;
+            get => name;
             private set 
             {
                 if (string.IsNullOrWhiteSpace(Name)) throw new ArgumentException(ExceptionMessages.NameNullOrWhitespace);
-                Name = value;
+                name = value;
             }
         }
-        public double Price { get; private set; }
+        public double Price { get => price; private set => price = value; }
         public override string ToString()
         {
             return $"{Name} - {Price:d2} lv";

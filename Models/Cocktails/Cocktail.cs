@@ -9,6 +9,9 @@ namespace ChristmasPastryShop.Models.Cocktails
 {
     public abstract class Cocktail
     {
+        private string name;
+        private string size;
+        private double price;
         public Cocktail(string cocktailName, string size, double price)
         {
             Name = cocktailName;
@@ -18,29 +21,29 @@ namespace ChristmasPastryShop.Models.Cocktails
 
         public string Name 
         { 
-            get => Name;
+            get => name;
             private set 
             {
                 if (string.IsNullOrWhiteSpace(Name)) throw new ArgumentException(ExceptionMessages.NameNullOrWhitespace);
-                Name = value;
+                name = value;
             }
         }
-        public string Size { get; private set; }
+        public string Size { get => size; set => size = value; }
         public double Price 
         {
-            get => Price;
+            get => price;
             private set 
             { 
                 switch (Size)
                 {
                     case "Large":
-                        Price = Price;
+                        price = value;
                         break;
                     case "Middle":
-                        Price = Price * 2 / 3;
+                        price = value * 2 / 3;
                         break;
                     case "Small":
-                        Price = Price / 3;
+                        price = value / 3;
                         break;
                 }
             }

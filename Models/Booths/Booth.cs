@@ -14,8 +14,12 @@ namespace ChristmasPastryShop.Models.Booths
 {
     public class Booth : IBooth
     {
-        private IRepository<ICocktail> _cocktailRepository;
-        private IRepository<IDelicacy> _delicacyRepositoty;
+        private int boothId;
+        private int capacity;
+        private double currentBill;
+        private double turnover;
+        private IRepository<ICocktail> cocktailRepository;
+        private IRepository<IDelicacy> delicacyRepositoty;
 
         public Booth(int boothId, int capacity)
         {
@@ -24,29 +28,32 @@ namespace ChristmasPastryShop.Models.Booths
             CurrentBill = 0;
             Turnover = 0;
             IsReserved = false;
-            _cocktailRepository = new CocktailRepository();
-            _delicacyRepositoty = new DelicacyRepository();
+            cocktailRepository = new CocktailRepository();
+            delicacyRepositoty = new DelicacyRepository();
         }
 
         public int BoothId { get; private set; }
 
         public int Capacity
         {
-            get => Capacity;
+            get 
+            {
+                return capacity;
+            }
             private set
             {
                 if (value < 1) throw new ArgumentException(ExceptionMessages.CapacityLessThanOne);
-                Capacity = value;
+                capacity = value;
             }
         }
 
-        public IRepository<IDelicacy> DelicacyMenu => _delicacyRepositoty;
+        public IRepository<IDelicacy> DelicacyMenu => delicacyRepositoty;
 
-        public IRepository<ICocktail> CocktailMenu => _cocktailRepository;
+        public IRepository<ICocktail> CocktailMenu => cocktailRepository;
 
-        public double CurrentBill { get; private set; }
+        public double CurrentBill { get => currentBill; private set => currentBill = value; }
 
-        public double Turnover { get; private set; }
+        public double Turnover { get => turnover; private set => turnover = value; }
 
         public bool IsReserved { get; private set; }
 
@@ -72,9 +79,9 @@ namespace ChristmasPastryShop.Models.Booths
             sb.AppendLine($"Capacity: {Capacity}");
             sb.AppendLine($"Turnover: {Turnover:d2} lv");
             sb.AppendLine($"-Cocktail menu:");
-            foreach (var cocktail in _cocktailRepository.Models) sb.AppendLine($"--{cocktail.ToString()}");
+            foreach (var cocktail in cocktailRepository.Models) sb.AppendLine($"--{cocktail.ToString()}");
             sb.AppendLine($"-Delicacy menu:");
-            foreach (var delicacy in _delicacyRepositoty.Models) sb.AppendLine($"--{delicacy.ToString()}");
+            foreach (var delicacy in delicacyRepositoty.Models) sb.AppendLine($"--{delicacy.ToString()}");
             return sb.ToString().TrimEnd();
         }
     }
