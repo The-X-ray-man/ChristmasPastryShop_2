@@ -8,7 +8,6 @@ namespace ChristmasPastryShop.Models.Delicacies
     public abstract class Delicacy
     {
         private string name;
-        private double price;
         public Delicacy(string delicacyName, double price)
         {
             Name = delicacyName;
@@ -24,7 +23,7 @@ namespace ChristmasPastryShop.Models.Delicacies
                 name = value;
             }
         }
-        public double Price { get => price; private set => price = value; }
+        public double Price { get; private set; }
         public override string ToString()
         {
             return $"{Name} - {Price:f2} lv";

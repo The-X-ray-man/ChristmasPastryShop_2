@@ -10,7 +10,6 @@ namespace ChristmasPastryShop.Models.Cocktails
     public abstract class Cocktail
     {
         private string name;
-        private string size;
         private double price;
         public Cocktail(string cocktailName, string size, double price)
         {
@@ -28,7 +27,7 @@ namespace ChristmasPastryShop.Models.Cocktails
                 name = value;
             }
         }
-        public string Size { get => size; set => size = value; }
+        public string Size { get; private set; }
         public double Price 
         {
             get => price;

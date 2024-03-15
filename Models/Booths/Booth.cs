@@ -14,10 +14,7 @@ namespace ChristmasPastryShop.Models.Booths
 {
     public class Booth : IBooth
     {
-        private int boothId;
         private int capacity;
-        private double currentBill;
-        private double turnover;
         private IRepository<ICocktail> cocktailRepository;
         private IRepository<IDelicacy> delicacyRepositoty;
 
@@ -51,9 +48,9 @@ namespace ChristmasPastryShop.Models.Booths
 
         public IRepository<ICocktail> CocktailMenu => cocktailRepository;
 
-        public double CurrentBill { get => currentBill; private set => currentBill = value; }
+        public double CurrentBill { get; private set; }
 
-        public double Turnover { get => turnover; private set => turnover = value; }
+        public double Turnover { get; private set; }
 
         public bool IsReserved { get; private set; }
 
