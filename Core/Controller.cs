@@ -38,7 +38,7 @@ namespace ChristmasPastryShop.Core
             //throw new NotImplementedException();
             if (cocktailTypeName != nameof(Hibernation) && cocktailTypeName != nameof(MulledWine)) return string.Format(OutputMessages.InvalidCocktailType, cocktailTypeName);
             if (size != "Large" &&  size != "Middle" && size != "Small") return string.Format(OutputMessages.InvalidCocktailSize, size);
-            if (booths.Models.Any(x => x.CocktailMenu.Models.Any(y =>  y.Name == cocktailName))) return string.Format(OutputMessages.CocktailAlreadyAdded, cocktailName);
+            if (booths.Models.Any(x => x.CocktailMenu.Models.Any(y =>  y.Name == cocktailName && y.Size == size))) return string.Format(OutputMessages.CocktailAlreadyAdded, size, cocktailName);
             IBooth selectedBooth = booths.Models.FirstOrDefault(x => x.BoothId == boothId);
             ICocktail newCocktail;
             if (cocktailTypeName == nameof(Hibernation))
