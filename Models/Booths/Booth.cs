@@ -10,13 +10,13 @@ using System.Net.Security;
 using System.Net.WebSockets;
 using System.Text;
 
-namespace ChristmasPastryShop.Models.Cocktails
+namespace ChristmasPastryShop.Models.Booths
 {
     public class Booth : IBooth
     {
         private IRepository<ICocktail> _cocktailRepository;
         private IRepository<IDelicacy> _delicacyRepositoty;
-        
+
         public Booth(int boothId, int capacity)
         {
             BoothId = boothId;
@@ -28,12 +28,12 @@ namespace ChristmasPastryShop.Models.Cocktails
             _delicacyRepositoty = new DelicacyRepository();
         }
 
-        public int BoothId {get; private set;}
+        public int BoothId { get; private set; }
 
-        public int Capacity 
-        { 
+        public int Capacity
+        {
             get => Capacity;
-            private set 
+            private set
             {
                 if (value < 1) throw new ArgumentException(ExceptionMessages.CapacityLessThanOne);
                 Capacity = value;
@@ -44,7 +44,7 @@ namespace ChristmasPastryShop.Models.Cocktails
 
         public IRepository<ICocktail> CocktailMenu => _cocktailRepository;
 
-        public double CurrentBill {  get; private set; }
+        public double CurrentBill { get; private set; }
 
         public double Turnover { get; private set; }
 
@@ -64,6 +64,18 @@ namespace ChristmasPastryShop.Models.Cocktails
         public void UpdateCurrentBill(double amount)
         {
             CurrentBill += amount;
+        }
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Booth: {BoothId}");
+            sb.AppendLine($"Capacity: {Capacity}");
+            sb.AppendLine($"Turnover: {Turnover:d2} lv");
+            sb.AppendLine($"-Cocktail menu:");
+            foreach (var cocktail in _cocktailRepository.Models) sb.AppendLine($"--{cocktail.ToString()}");
+            sb.AppendLine($"-Delicacy menu:");
+            foreach (var delicacy in _delicacyRepositoty.Models) sb.AppendLine($"--{delicacy.ToString()}");
+            return sb.ToString().TrimEnd();
         }
     }
 }

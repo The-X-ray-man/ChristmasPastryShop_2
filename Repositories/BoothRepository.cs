@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ChristmasPastryShop.Repositories
 {
-    internal class BoothRepository : IRepository<IBooth>
+    public class BoothRepository : IRepository<IBooth>
     {
         private List<IBooth> booths;
 
