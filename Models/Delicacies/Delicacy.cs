@@ -27,7 +27,7 @@ namespace ChristmasPastryShop.Models.Delicacies
         public double Price { get => price; private set => price = value; }
         public override string ToString()
         {
-            return $"{Name} - {Price:d2} lv";
+            return $"{Name} - {Price:f2} lv";
         }
     }
 }

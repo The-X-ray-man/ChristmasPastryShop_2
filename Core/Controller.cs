@@ -83,7 +83,7 @@ namespace ChristmasPastryShop.Core
             //throw new NotImplementedException();
             IBooth selectedBooth = booths.Models.FirstOrDefault(x => x.BoothId == boothId);
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine(string.Format(OutputMessages.GetBill, string.Format($"{selectedBooth.CurrentBill:d2}")));
+            sb.AppendLine(string.Format(OutputMessages.GetBill, string.Format($"{selectedBooth.CurrentBill:f2}")));
             sb.AppendLine(string.Format(OutputMessages.BoothIsAvailable, boothId));
             selectedBooth.Charge();
             if (selectedBooth.IsReserved) selectedBooth.ChangeStatus();
