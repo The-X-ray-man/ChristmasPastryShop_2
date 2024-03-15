@@ -77,7 +77,7 @@ namespace ChristmasPastryShop.Models.Booths
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"Booth: {BoothId}");
             sb.AppendLine($"Capacity: {Capacity}");
-            sb.AppendLine($"Turnover: {Turnover:d2} lv");
+            sb.AppendLine($"Turnover: {Turnover:f2} lv");
             sb.AppendLine($"-Cocktail menu:");
             foreach (var cocktail in cocktailRepository.Models) sb.AppendLine($"--{cocktail.ToString()}");
             sb.AppendLine($"-Delicacy menu:");

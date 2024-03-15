@@ -130,6 +130,7 @@ namespace ChristmasPastryShop.Core
             {
                 return string.Format(OutputMessages.NotRecognizedItemName, itemTypeName, itemName);
             }
+            if (itemTypeName == nameof(Hibernation) || itemTypeName == nameof(MulledWine)) isCocktail = true;
             if (isCocktail)
             {
                 itemSize = tokens[3];
